@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_124356) do
+ActiveRecord::Schema.define(version: 2021_06_07_154739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "add_items_to_carts", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_add_items_to_carts_on_cart_id"
+    t.index ["item_id"], name: "index_add_items_to_carts_on_item_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "title"
@@ -32,6 +48,8 @@ ActiveRecord::Schema.define(version: 2021_06_07_124356) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

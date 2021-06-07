@@ -9,7 +9,7 @@
 ########## Delete All ##########
 Item.destroy_all
 User.destroy_all
-AddItemsToCarts.destroy_all
+AddItemsToCart.destroy_all
 
 ########## Create 10 items ########
 10.times do |i|
@@ -47,7 +47,7 @@ end
 
 
 30.times do |i|
- AddItemsToCarts.create(
+ AddItemsToCart.create(
     cart_id:Cart.all.sample.id,
     item_id:Item.all.sample.id
   )
